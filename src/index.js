@@ -35,8 +35,12 @@
 }))
  app.use(express.urlencoded({extended: true}))
  app.use(userRouter)
- 
 
-app.listen(PORT, () => {
+ if(process.env.NODE_ENV !== 'production'){
+    app.listen(PORT, () => {
     console.log(`Server is running on ${PORT}`)
 })
+
+ }
+ 
+export default app;
