@@ -115,6 +115,6 @@ export async function logOut(req, res) {
         }
 }
 export const getHome = (req, res) => {
-    res.send('Hello world!')
+    res.send('API is running....')
     
 }
