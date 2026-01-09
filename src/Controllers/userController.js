@@ -4,6 +4,7 @@ import { userModel } from "../Models/userSchema.js"
 import { loginValidator } from "../Validator/userValidator.js"
 import bcrypt from "bcryptjs"
 import { generateToken } from "../utils/generateToken.js"
+import { connectDB } from "../config/DB.js"
 
 export const postUser = async (req, res) => {
     try {
@@ -14,6 +15,7 @@ export const postUser = async (req, res) => {
                 error: error.details[0].message
             })
         }
+        await connectDB()
 
         const user = await userModel.create({
             username,
@@ -52,6 +54,7 @@ export const loginUser = async (req, res) => {
             })
             
         }
+        await connectDB()
 
         const existingUser = await userModel.findOne({email})
         if(existingUser) {
