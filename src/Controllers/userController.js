@@ -117,6 +117,27 @@ export async function logOut(req, res) {
             }
         }
 }
+export const getUser = async (req, res) => {
+    try {
+        const user = req.user
+        res.json({
+      success: true,
+      data: {
+        id: user._id,
+        username: user.username,
+        email: user.email
+      }
+    }) 
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({
+      success: false,
+      message: 'Server error',
+      error: error.message
+    });
+        
+    }
+} 
 export const getHome = (req, res) => {
     res.send('API is running....')
     
